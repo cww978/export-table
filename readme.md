@@ -1,4 +1,4 @@
-### 一、安装引用
+#### 安装引用
 
 ```shell
 #安装
@@ -7,13 +7,19 @@ npm i export-table -S
 import ExportPlus from 'export-table'
 ```
 
-### 二、创建导出对象
+#### 创建导出对象
 
 ```javascript
  new ExportPlus(exportOptions)
 ```
 
-##### 参数exportOptions
+##### 参数
+
+| 名称          | 类型   | 必填 | 描述                           |
+| ------------- | ------ | ---- | ------------------------------ |
+| exportOptions | object | 否   | {title, describe,saveFileName} |
+
+##### exportOptions
 
 | 名称         | 类型   | 必填 | 描述           |
 | ------------ | ------ | ---- | -------------- |
@@ -27,7 +33,7 @@ import ExportPlus from 'export-table'
 const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
 ```
 
-### 三、table导出表格
+#### table导出表格
 
 ```javascript
 ExportTable.table_xlsx(VueComponent)
@@ -44,33 +50,31 @@ ExportTable.table_xlsx(VueComponent)
 
 ```html
 <div>
-    <el-table
-          :cell-style="cellStyle"
-          :span-method="objectSpanMethod"
-          ref="el-table"
-          :data="tableData"
-          style="width: 100%"
-        >
-		<el-table-column prop="date" label="日期" width="150"></el-table-column>
-    	<el-table-column label="配送信息">
-    		<el-table-column prop="name" label="姓名" width="120"></el-table-column>
-    		<el-table-column label="地址">
-    			<el-table-column prop="province" label="省份" width="120"></el-table-column>
-    			<el-table-column prop="city" label="市区" width="120"></el-table-column>
-    			<el-table-column prop="address" label="地址" width="300"></el-table-column>
-    		</el-table-column>
-    	</el-table-column>
-    	<el-table-column prop="zip" label="邮编" width="120"></el-table-column>
-	</el-table>
+  <el-table :cell-style="cellStyle" :span-method="objectSpanMethod"
+    ref="el-table"
+    :data="tableData"
+    style="width: 100%">
+    <el-table-column prop="date" label="日期" width="150"></el-table-column>
+      <el-table-column label="配送信息">
+      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
+      <el-table-column label="地址">
+        <el-table-column prop="province" label="省份" width="120"></el-table-column>
+    	<el-table-column prop="city" label="市区" width="120"></el-table-column>
+    	<el-table-column prop="address" label="地址" width="300"></el-table-column>
+      </el-table-column>
+    </el-table-column>
+    <el-table-column prop="zip" label="邮编" width="120"></el-table-column>
+  </el-table>
 </div>
 
 <script>
+    import ExportPlus from 'export-table'
     const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
     ExportTable.table_xlsx(this.$refs['el-table'])
 </script>
 ```
 
-### 四、json导出表格
+#### json导出表格
 
 ```javascript
 ExportTable.json_xlsx(tableData, columns, options)
