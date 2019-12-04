@@ -65,7 +65,7 @@ ExportTable.table_xlsx(VueComponent)
 </div>
 
 <script>
-    const ExportTable = new ExportPlus({ title: '中烟大盘', describe: '查询条件' })
+    const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
     ExportTable.table_xlsx(this.$refs['el-table'])
 </script>
 ```
@@ -173,7 +173,7 @@ let tableData = [
         { prop: 'zip', title: '邮编' }
       ]
       // 创建导出对象
-      const ExportTable = new ExportPlus({ title: '中烟大盘', describe: '查询条件' })
+      const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
       // 导出表格
       ExportTable.json_xlsx(this.tableData, columns, {
         cellMerge({ rowIndex, columnIndex }) {
