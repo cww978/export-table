@@ -15,9 +15,9 @@ import ExportPlus from 'export-table'
 
 ##### 参数
 
-| 名称          | 类型   | 必填 | 描述                           |
-| ------------- | ------ | ---- | ------------------------------ |
-| exportOptions | object | 否   | {title, describe,saveFileName} |
+| 名称          | 类型   | 必填 | 描述                            |
+| ------------- | ------ | ---- | ------------------------------- |
+| exportOptions | Object | 否   | {title, describe, saveFileName} |
 
 ##### exportOptions
 
@@ -44,7 +44,6 @@ ExportTable.table_xlsx(VueComponent)
 | 名称         | 类型         | 必填 | 描述 |
 | ------------ | ------------ | ---- | ---- |
 | VueComponent | VueComponent | 是   | dom  |
-|              |              |      |      |
 
 ##### 实列
 
@@ -82,11 +81,11 @@ ExportTable.json_xlsx(tableData, columns, options)
 
 ##### 参数
 
-| 名称      | 类型   | 必填 | 描述                     |
-| --------- | ------ | ---- | ------------------------ |
-| tableData | Array  | 是   | 数据                     |
-| columns   | Array  | 是   | 表头                     |
-| options   | Object | 否   | 合并、字体样式的回调方法 |
+| 名称      | 类型   | 必填 | 描述                   |
+| --------- | ------ | ---- | ---------------------- |
+| tableData | Array  | 是   | 数据                   |
+| columns   | Array  | 是   | 表头                   |
+| options   | Object | 否   | {cellMerge, cellStyle} |
 
 ##### options
 
@@ -100,96 +99,95 @@ ExportTable.json_xlsx(tableData, columns, options)
 ```javascript
 // 数据     
 let tableData = [
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '1518 弄',
-          zip: 200333
-        }
-      ]
-      // 表头信息
-      let columns = [
-        { prop: 'date', title: '日期' },
-        {
-          title: '配送信息',
-          children: [
+    {
+        date: '2016-05-03',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-02',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-04',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-01',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-08',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-06',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    },
+    {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '1518 弄',
+        zip: 200333
+    }
+]
+// 表头信息
+let columns = [
+    { prop: 'date', title: '日期' },
+    {
+        title: '配送信息',
+        children: [
             { prop: 'name', title: '姓名' },
             {
-              title: '地址',
-              children: [
-                { prop: 'province', title: '省份' },
-                { prop: 'city', title: '市区' },
-                { prop: 'address', title: '地址' }
-              ]
+                title: '地址',
+                children: [
+                    { prop: 'province', title: '省份' },
+                    { prop: 'city', title: '市区' },
+                    { prop: 'address', title: '地址' }
+                ]
             }
-          ]
-        },
-        { prop: 'zip', title: '邮编' }
-      ]
-      // 创建导出对象
-      const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
-      // 导出表格
-      ExportTable.json_xlsx(this.tableData, columns, {
-        cellMerge({ rowIndex, columnIndex }) {
-          if (columnIndex === 0) {
+        ]
+    },
+    { prop: 'zip', title: '邮编' }
+]
+// 创建导出对象
+const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
+// 导出表格
+ExportTable.json_xlsx(tableData, columns, {
+    cellMerge({ rowIndex, columnIndex }) {
+        if (columnIndex === 0) {
             if (rowIndex % 2 === 0) {
-              return {
-                rowspan: 2,
-                colspan: 1
-              }
+                return {
+                    rowspan: 2,
+                    colspan: 1
+                }
             }
-          }
         }
-      })
+    }
+})
 ```
-
