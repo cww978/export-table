@@ -24,7 +24,7 @@ import ExportPlus from 'export-table'
 ##### 实列
 
 ```javascript
-const ExportTable = new ExportPlus({ title: '中烟大盘', describe: '查询条件' })
+const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
 ```
 
 ### 三、table导出表格
