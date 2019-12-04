@@ -1,0 +1,30 @@
+{
+  "name": "export-table",
+  "version": "1.0.0",
+  "description": "export-table",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cww978/export-table.git"
+  },
+  "keywords": [
+    "export",
+    "element-table",
+    "table"
+  ],
+  "author": "cww",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cww978/export-table/issues"
+  },
+  "homepage": "https://github.com/cww978/export-table#readme",
+  "dependencies": {
+    "xlsx-populate": "^1.20.1"
+  }
+}
