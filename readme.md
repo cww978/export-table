@@ -1,4 +1,4 @@
-#### 安装引用
+### 安装引用
 
 ```shell
 #安装
@@ -7,7 +7,7 @@ npm i export-table -S
 import ExportPlus from 'export-table'
 ```
 
-#### 创建导出对象
+### 创建导出对象
 
 ```javascript
  new ExportPlus(exportOptions)
@@ -33,7 +33,7 @@ import ExportPlus from 'export-table'
 const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
 ```
 
-#### table导出表格
+### table导出表格
 
 ```javascript
 ExportTable.table_xlsx(VueComponent)
@@ -74,7 +74,7 @@ ExportTable.table_xlsx(VueComponent)
 </script>
 ```
 
-#### json导出表格
+### json导出表格
 
 ```javascript
 ExportTable.json_xlsx(tableData, columns, options)
