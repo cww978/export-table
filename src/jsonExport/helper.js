@@ -4,7 +4,9 @@ import { fillData } from '../../lib/common'
 const getAllColumns = columns => {
   const result = []
   columns.forEach(column => {
-    let { value, style } = getCell(column.title).setStyle(celltStyle.head)
+    let { value, style } = getCell({ value: column.title }).setStyle(
+      celltStyle.head
+    )
     column.value = value
     column.style = style
     if (column.children) {
@@ -91,8 +93,20 @@ const getSpan = function(row, column, rowIndex, columnIndex, fn) {
   }
   return { rowSpan, colSpan }
 }
+const getFormat = function(prop, value, fn) {
+  let formatValue = value
+  if (typeof fn === 'function') {
+    const result = fn({ prop, value })
+    formatValue = result
+  }
+  return formatValue
+}
 // 格式话数据
-export function formatData(data = [], columns = [], { cellStyle, cellMerge }) {
+export function formatData(
+  data = [],
+  columns = [],
+  { cellStyle, cellMerge, cellFormat }
+) {
   const allColumns = getAllColumns(columns)
   let cells = []
   // 数据
@@ -100,8 +114,9 @@ export function formatData(data = [], columns = [], { cellStyle, cellMerge }) {
     let row = []
     for (let j = 0; j < allColumns.length; j++) {
       if (typeof allColumns[j].prop != 'undefined') {
-        let cell = getCell(data[i][allColumns[j].prop])
-        cell.setStyle(cellStyle(allColumns[j].prop, data[i][allColumns[j].prop]))
+        let cell = getCell({ value: data[i][allColumns[j].prop] })
+        cell.value = getFormat(allColumns[j].prop, cell.value, cellFormat)
+        cell.setStyle(cellStyle(allColumns[j].prop, cell.value))
         let span = getSpan(data[i], cell.value, i, j, cellMerge)
         if (typeof span !== 'undefined') {
           cell.rowSpan = span.rowSpan == undefined ? cell.rowSpan : span.rowSpan

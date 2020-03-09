@@ -1,7 +1,12 @@
 // 基于element-table导出成XLSX的表格文件
 const XlsxPopulate = require('xlsx-populate')
 import { celltStyle } from '../../lib/config'
-import { fillData, drawExcel, downFile } from '../../lib/common'
+import {
+  fillData,
+  drawExcel,
+  downFile,
+  sheetTableColumnWidth
+} from '../../lib/common'
 import { getCellFromTable } from './helper'
 
 export default function table_export(element) {
@@ -38,6 +43,8 @@ export default function table_export(element) {
     sheet = drawExcel(sheet, state._columns)
     // 填入表格主体数据
     sheet = drawExcel(sheet, state._data)
+    // 设置列宽
+    sheet = sheetTableColumnWidth(sheet, state._columns)
     // 导出表格
     workbook.outputAsync().then(function(blob) {
       downFile(blob, state.saveFileName + '.xlsx')

@@ -178,16 +178,90 @@ let columns = [
 // 创建导出对象
 const ExportTable = new ExportPlus({ title: '表格标题', describe: '查询条件' })
 // 导出表格
-ExportTable.json_xlsx(tableData, columns, {
-    cellMerge({ rowIndex, columnIndex }) {
-        if (columnIndex === 0) {
-            if (rowIndex % 2 === 0) {
-                return {
-                    rowspan: 2,
-                    colspan: 1
-                }
+ExportTable.json_xlsx(tableData, columns)
+```
+
+##### cellStyle设置单元格样式
+
+cellStyle({ prop, value })返回值**style**
+
+```javascript
+function: cellStyle({prop, value}) {
+	// 当是id列时格式化数据
+    if (prop === 'id') {
+        return {
+            fontColor: 'ff0000'
+        }
+    } else {
+        return {}
+    }
+}
+let tableData = [] // 表单数据
+let columns = [] // 表头
+// 定义导出实列
+const ExportTable = new ExportPlus()
+// 导出表格
+ExportTable.json_xlsx(tableData, columns, { cellStyle })
+```
+
+##### style
+
+- fontSize --字体大小`Number`
+- verticalAlignment --竖直方向对齐方式，可选`center`,`right`,`left`
+- horizontalAlignment --横向对齐位置，可选`center`,`right`,`left`
+- border --是否显示边框，可选`fasle`,`true`
+- borderColor --边框颜色`CCCCCC`
+- fontColor --字体颜色`000000`
+- fill --单元格背景`FFFFFF`
+
+##### cellFormat格式化单元格数据
+
+cellFormat({ prop, value })
+
+```javascript
+function: cellFormat({prop, value}) {
+	// 当是id列时格式化数据
+    if (prop === 'id') {
+        value = 'id' + value
+    }
+	return value
+}
+let tableData = [] // 表单数据
+let columns = [] // 表头
+// 定义导出实列
+const ExportTable = new ExportPlus()
+// 导出表格
+ExportTable.json_xlsx(tableData, columns, { cellFormat })
+```
+
+##### cellMerge合并表格数据
+
+cellMerge({rowIndex, columnIndex})
+
+```javascript
+function: cellMerge({rowIndex, columnIndex}) {
+	// rowIndex 行标
+    // columnIndex 列标
+    // 第0列起向下合并两个单元格
+    if (columnIndex === 0) {
+        if (rowIndex % 2 === 0) {
+            return {
+                rowspan: 2,
+                colspan: 1
             }
         }
+    } else {
+        return {
+           rowspan: 1,
+           colspan: 1 
+        }
     }
-})
+}
+let tableData = [] // 表单数据
+let columns = [] // 表头
+// 定义导出实列
+const ExportTable = new ExportPlus()
+// 导出表格
+ExportTable.json_xlsx(tableData, columns, { cellMerge })
 ```
+

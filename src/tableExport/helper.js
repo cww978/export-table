@@ -13,7 +13,12 @@ export function getCellFromTable(table, type = 'body') {
           fontColor: colorRGBtoHex(color) || '000000',
           fill: colorRGBtoHex(backgroundColor) || 'FFFFFF'
         }
-        let cell = getCell(cells[j].innerText, cells[j].rowSpan, cells[j].colSpan)
+        let cell = getCell({
+          width: cells[j].offsetWidth,
+          value: cells[j].innerText,
+          rowSpan: cells[j].rowSpan,
+          colSpan: cells[j].colSpan
+        })
         if (type === 'header') {
           cell.setStyle(celltStyle.head)
         } else {
