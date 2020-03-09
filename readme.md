@@ -183,11 +183,11 @@ ExportTable.json_xlsx(tableData, columns)
 
 ##### cellStyle设置单元格样式
 
-cellStyle({ prop, value })返回值**style**
+- cellStyle({ prop, value })返回值**style**
 
 ```javascript
 function: cellStyle({prop, value}) {
-	// 当是id列时格式化数据
+	// 当是id列时设置字体颜色
     if (prop === 'id') {
         return {
             fontColor: 'ff0000'
@@ -216,7 +216,7 @@ ExportTable.json_xlsx(tableData, columns, { cellStyle })
 
 ##### cellFormat格式化单元格数据
 
-cellFormat({ prop, value })
+- cellFormat({ prop, value })
 
 ```javascript
 function: cellFormat({prop, value}) {
@@ -236,7 +236,7 @@ ExportTable.json_xlsx(tableData, columns, { cellFormat })
 
 ##### cellMerge合并表格数据
 
-cellMerge({rowIndex, columnIndex})
+- cellMerge({rowIndex, columnIndex})
 
 ```javascript
 function: cellMerge({rowIndex, columnIndex}) {
