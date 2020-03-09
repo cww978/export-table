@@ -1,6 +1,6 @@
 {
   "name": "export-table",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "export-table",
   "main": "index.js",
   "directories": {

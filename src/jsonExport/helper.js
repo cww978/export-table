@@ -93,6 +93,7 @@ const getSpan = function(row, column, rowIndex, columnIndex, fn) {
   }
   return { rowSpan, colSpan }
 }
+// 获取单元格格式化规则
 const getFormat = function(prop, value, fn) {
   let formatValue = value
   if (typeof fn === 'function') {
@@ -100,6 +101,15 @@ const getFormat = function(prop, value, fn) {
     formatValue = result
   }
   return formatValue
+}
+// 获取单元格样式
+const getCellStyle = function(prop, value, fn) {
+  let style = {}
+  if (typeof fn === 'function') {
+    const result = fn({ prop, value })
+    style = result
+  }
+  return style
 }
 // 格式话数据
 export function formatData(
@@ -116,7 +126,7 @@ export function formatData(
       if (typeof allColumns[j].prop != 'undefined') {
         let cell = getCell({ value: data[i][allColumns[j].prop] })
         cell.value = getFormat(allColumns[j].prop, cell.value, cellFormat)
-        cell.setStyle(cellStyle(allColumns[j].prop, cell.value))
+        cell.setStyle(getCellStyle(allColumns[j].prop, cell.value, cellStyle))
         let span = getSpan(data[i], cell.value, i, j, cellMerge)
         if (typeof span !== 'undefined') {
           cell.rowSpan = span.rowSpan == undefined ? cell.rowSpan : span.rowSpan
